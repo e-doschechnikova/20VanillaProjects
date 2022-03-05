@@ -64,10 +64,12 @@ h2 {
 
 .form-control.success input {
   border-color: var(--success-color);
+  color: var(--success-color);
 }
 
 .form-control.error input {
   border-color: var(--error-color);
+  color: var(--error-color);
 }
 
 .form-control small {
@@ -79,7 +81,7 @@ h2 {
 }
 
 .form-control.error small {
-  visibility: hidden;
+  visibility: visible;
 }
 
 .form button {
