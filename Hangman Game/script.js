@@ -11,3 +11,35 @@ const finalMessageRevealWord = document.getElementById(
 const figureParts = document.querySelectorAll(".figure-part");
 
 const words = ["application", "programming", "interface", "wizard"];
+
+let selectedWord = words[Math.floor(Math.random() * words.length)];
+
+let playable = true;
+
+const correctLetters = [];
+const wrongLetters = [];
+
+function displayWord() {
+  wordEl.innerHTML = `
+    ${selectedWord
+      .split("")
+      .map(
+        (letter) => `
+          <span class="letter">
+            ${correctLetters.includes(letter) ? letter : ""}
+          </span>
+        `
+      )
+      .join("")}
+  `;
+
+  const innerWord = wordEl.innerText.replace(/[ \n]/g, "");
+
+  if (innerWord === selectedWord) {
+    finalMessage.innerText = "Congratulations! You won! 😃";
+    finalMessageRevealWord.innerText = "";
+    popup.style.display = "flex";
+
+    playable = false;
+  }
+}
