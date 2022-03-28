@@ -99,7 +99,7 @@ body {
 }
 
 .container.shrink {
-  animation: grow 3s linear forwards;
+  animation: shrink 3s linear forwards;
 }
 
 @keyframes shrink {
