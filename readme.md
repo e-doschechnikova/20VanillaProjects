@@ -1,1 +1,1 @@
-# 20 проектов HTML, CSS, JS - в которых показаны возможности нативного JS при создании приложений.
+# 20 HTML, CSS, JS projects - which show the possibilities of native JS when creating applications.
