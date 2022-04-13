@@ -38,3 +38,34 @@ const brickInfo = {
   offsetY: 60,
   visible: true,
 };
+
+const bricks = [];
+for (let i = 0; i < brickRowCount; i++) {
+  bricks[i] = [];
+  for (let j = 0; j < brickColumnCount; j++) {
+    const x = i * (brickInfo.w + brickInfo.padding) + brickInfo.offsetX;
+    const y = j * (brickInfo.h + brickInfo.padding) + brickInfo.offsetY;
+    bricks[i][j] = { x, y, ...brickInfo };
+  }
+}
+
+function drawBall() {
+  ctx.beginPath();
+  ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2);
+  ctx.fillStyle = ball.visible ? "#0095dd" : "transparent";
+  ctx.fill();
+  ctx.closePath();
+}
+
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h);
+  ctx.fillStyle = paddle.visible ? "#0095dd" : "transparent";
+  ctx.fill();
+  ctx.closePath();
+}
+
+function drawScore() {
+  ctx.font = "20px Arial";
+  ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
+}
