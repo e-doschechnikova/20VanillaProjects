@@ -136,3 +136,74 @@ function moveBall() {
     score = 0;
   }
 }
+
+function increaseScore() {
+  score++;
+
+  if (score % (brickRowCount * brickColumnCount) === 0) {
+    ball.visible = false;
+    paddle.visible = false;
+
+    setTimeout(function () {
+      showAllBricks();
+      score = 0;
+      paddle.x = canvas.width / 2 - 40;
+      paddle.y = canvas.height - 20;
+      ball.x = canvas.width / 2;
+      ball.y = canvas.height / 2;
+      ball.visible = true;
+      paddle.visible = true;
+    }, delay);
+  }
+}
+
+function showAllBricks() {
+  bricks.forEach((column) => {
+    column.forEach((brick) => (brick.visible = true));
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  drawBall();
+  drawPaddle();
+  drawScore();
+  drawBricks();
+}
+
+function update() {
+  movePaddle();
+  moveBall();
+
+  draw();
+
+  requestAnimationFrame(update);
+}
+
+update();
+
+function keyDown(e) {
+  if (e.key === "Right" || e.key === "ArrowRight") {
+    paddle.dx = paddle.speed;
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
+    paddle.dx = -paddle.speed;
+  }
+}
+
+function keyUp(e) {
+  if (
+    e.key === "Right" ||
+    e.key === "ArrowRight" ||
+    e.key === "Left" ||
+    e.key === "ArrowLeft"
+  ) {
+    paddle.dx = 0;
+  }
+}
+
+document.addEventListener("keydown", keyDown);
+document.addEventListener("keyup", keyUp);
+
+rulesBtn.addEventListener("click", () => rules.classList.add("show"));
+closeBtn.addEventListener("click", () => rules.classList.remove("show"));
